@@ -4,18 +4,24 @@ plugins {
 }
 
 android {
+    // 签名：优先读环境变量，否则用仓库根目录的 keystore（CI 与本地通用，不再写死 Windows 绝对路径）
+    def keystorePath  = System.getenv("FREEZEIT_KEYSTORE")        ?: "${rootDir}/freezeitapp_key.jks"
+    def keystorePwd   = System.getenv("FREEZEIT_STORE_PASSWORD")  ?: "freezeit"
+    def keystoreAlias = System.getenv("FREEZEIT_KEY_ALIAS")       ?: "freezeit"
+    def keystoreKeyPwd = System.getenv("FREEZEIT_KEY_PASSWORD")   ?: "freezeit"
+
     signingConfigs {
         debug {
-            storeFile file('D:\\project\\github\\freezeitapp\\freezeitapp_key.jks')
-            storePassword 'freezeit'
-            keyAlias 'freezeit'
-            keyPassword 'freezeit'
+            storeFile file(keystorePath)
+            storePassword keystorePwd
+            keyAlias keystoreAlias
+            keyPassword keystoreKeyPwd
         }
         release {
-            storeFile file('D:\\project\\github\\freezeitapp\\freezeitapp_key.jks')
-            storePassword 'freezeit'
-            keyAlias 'freezeit'
-            keyPassword 'freezeit'
+            storeFile file(keystorePath)
+            storePassword keystorePwd
+            keyAlias keystoreAlias
+            keyPassword keystoreKeyPwd
         }
     }
     compileSdk 34
