@@ -74,7 +74,11 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: 构建 Release APK
-        run: ./gradlew --no-daemon assembleRelease
+        run: |
+          set -euo pipefail
+          # 仓库里 gradlew 可能没有可执行位，显式补上（并兼容 Windows 检出）
+          chmod +x gradlew
+          ./gradlew --no-daemon assembleRelease
 
       - name: 校验 APK
         run: |
