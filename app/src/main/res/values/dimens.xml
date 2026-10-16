@@ -1,4 +1,17 @@
 <resources>
-    <dimen name="fab_margin">12dp</dimen>
-    <dimen name="width_margin">10dp</dimen>
+    <!-- 统一页边距 / 圆角 / 层次 -->
+    <dimen name="width_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="card_radius">26dp</dimen>
+    <dimen name="card_radius_sm">18dp</dimen>
+    <dimen name="dialog_radius">28dp</dimen>
+    <dimen name="card_elevation">8dp</dimen>
+    <dimen name="card_stroke">1dp</dimen>
+
+    <dimen name="screen_padding_top">12dp</dimen>
+    <dimen name="screen_padding_bottom">32dp</dimen>
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="card_spacing">14dp</dimen>
+    <dimen name="row_height">72dp</dimen>
 </resources>

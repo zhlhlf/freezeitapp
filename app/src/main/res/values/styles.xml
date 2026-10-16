@@ -1,0 +1,77 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- 复用样式（日/夜共用） -->
+
+    <!-- FAB：圆角方形（现代谷歌风）+ 大圆角 -->
+    <style name="ShapeAppearanceOverlay.App.Fab" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">30%</item>
+    </style>
+
+    <!-- 卡片内容容器（无背景，靠父级 glass_card 承载玻璃观感） -->
+    <style name="App.SectionTitle" parent="">
+        <item name="android:textColor">@color/g_on_surface</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- 设置项标题 -->
+    <style name="App.RowTitle" parent="">
+        <item name="android:textColor">@color/g_on_surface</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingVertical">16dp</item>
+    </style>
+
+    <!-- 设置项说明文字 -->
+    <style name="App.RowCaption" parent="">
+        <item name="android:textColor">@color/g_on_surface_variant</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <!-- 数值显示（等宽、谷歌蓝） -->
+    <style name="App.ValueText" parent="">
+        <item name="android:textColor">@color/g_primary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <!-- 分组小标题（卡片内） -->
+    <style name="App.CardHeading" parent="">
+        <item name="android:textColor">@color/g_on_surface_variant</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.06</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+
+    <!-- 毛玻璃卡片容器（统一投影/圆角/裁剪） -->
+    <style name="App.GlassCard" parent="">
+        <item name="android:background">@drawable/glass_card</item>
+        <item name="android:clipToOutline">true</item>
+        <item name="android:elevation">@dimen/card_elevation</item>
+        <item name="android:padding">@dimen/card_padding</item>
+    </style>
+
+    <!-- 底部导航条目样式（浅底深字，选中蓝）。
+         itemActiveIndicatorStyle 由 NavigationBarView 读取 NavigationBarActiveIndicator 样式项。 -->
+    <style name="App.BottomNav" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemIconTint">@color/bottom_nav_item</item>
+        <item name="itemTextColor">@color/bottom_nav_item</item>
+        <item name="itemActiveIndicatorStyle">@style/App.BottomNav.Indicator</item>
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="elevation">8dp</item>
+    </style>
+
+    <style name="App.BottomNav.Indicator" parent="">
+        <item name="android:color">@color/bottom_nav_indicator</item>
+        <item name="android:width">64dp</item>
+        <item name="android:height">32dp</item>
+        <item name="marginHorizontal">6dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.Indicator</item>
+    </style>
+
+    <style name="ShapeAppearance.App.Indicator" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">999dp</item>
+    </style>
+</resources>

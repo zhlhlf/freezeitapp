@@ -4,6 +4,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/g_background"
     android:orientation="vertical">
 
     <androidx.fragment.app.FragmentContainerView
@@ -15,13 +16,15 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/mobile_navigation" />
 
+    <!-- 底部导航：圆角毛玻璃底 + 胶囊活动指示器 -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
+        style="@style/App.BottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:alpha="0.6"
-        android:background="?android:attr/windowBackground"
-        android:padding="5dp"
+        android:background="@drawable/nav_bg"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:theme="@style/footButton"
         app:menu="@menu/bottom_nav_menu" />
 

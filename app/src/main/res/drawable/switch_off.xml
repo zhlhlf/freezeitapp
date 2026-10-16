@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- 开关（未选中）：中性浅灰胶囊 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <shape >
-            <solid android:color="@color/trans_gray_55" />
-            <corners android:radius="55dp" />
+        <shape android:shape="rectangle">
+            <corners android:radius="999dp" />
+            <solid android:color="@color/g_switch_off" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/g_outline" />
         </shape>
     </item>
 </layer-list>

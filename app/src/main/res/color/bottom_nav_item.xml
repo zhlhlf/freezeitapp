@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 底部导航条目：选中用谷歌蓝，未选中用中性灰 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/g_primary" android:state_checked="true" />
+    <item android:color="@color/g_on_surface_variant" />
+</selector>

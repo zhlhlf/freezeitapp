@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- 滑块轨道：浅色底 + 谷歌蓝已选段，全圆角 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <shape >
-            <solid android:color="@color/gray_white" />
-            <corners android:radius="55dp" />
+        <shape android:shape="rectangle">
+            <corners android:radius="999dp" />
+            <solid android:color="@color/g_track" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/g_outline" />
         </shape>
     </item>
     <item>
         <clip>
-            <shape >
-                <solid android:color="@color/purple_700"  />
-                <corners android:radius="15dp" />
+            <shape android:shape="rectangle">
+                <corners android:radius="999dp" />
+                <solid android:color="@color/g_primary" />
             </shape>
         </clip>
     </item>

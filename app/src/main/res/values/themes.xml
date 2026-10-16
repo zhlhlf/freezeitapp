@@ -1,21 +1,89 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.freezeit" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorPrimaryDark">@color/purple_500</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/gray_55</item>
-        <item name="colorSecondaryVariant">@color/gray_77</item>
-        <item name="colorOnSecondary">@color/purple_500</item>
-        <item name="colorOnSurface">@color/purple_500</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/purple_500</item>
-        <!-- Customize your theme here. -->
+    <!-- ============================================================
+         谷歌风浅色主题（白色系 + 谷歌蓝强调色 + 毛玻璃卡片）
+         与 values-night/themes.xml 内容保持一致：日夜两模都是浅色。
+         ============================================================ -->
+    <style name="Theme.freezeit" parent="Theme.MaterialComponents.Light.Bridge">
+        <!-- 主色 / 强调色 -->
+        <item name="colorPrimary">@color/g_primary</item>
+        <item name="colorPrimaryVariant">@color/g_primary_variant</item>
+        <item name="colorOnPrimary">@color/g_on_primary</item>
+        <item name="colorSecondary">@color/g_primary</item>
+        <item name="colorSecondaryVariant">@color/g_primary_variant</item>
+        <item name="colorOnSecondary">@color/g_on_primary</item>
+
+        <!-- 表面 / 文字 -->
+        <item name="colorSurface">@color/g_surface</item>
+        <item name="colorOnSurface">@color/g_on_surface</item>
+        <item name="colorError">@color/g_error</item>
+        <item name="android:textColorPrimary">@color/g_on_surface</item>
+        <item name="android:textColorSecondary">@color/g_on_surface_variant</item>
+        <item name="android:textColorPrimaryInverse">@color/g_on_primary</item>
+
+        <!-- 窗口 / 系统栏：浅色底 + 深色图标 -->
+        <item name="android:colorBackground">@color/g_background</item>
+        <item name="android:windowBackground">@color/g_background</item>
+        <item name="android:statusBarColor">@color/g_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/g_background</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <!-- 禁止系统「强制深色」把浅色界面反相 -->
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+
+        <!-- 浅色（白色）ActionBar，标题深色、层次清淡 -->
+        <item name="actionBarStyle">@style/Widget.App.ActionBar</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.App.ActionBar</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
+
+        <!-- 对话框：圆角 + 浅色表面 -->
+        <item name="android:alertDialogTheme">@style/Theme.App.Dialog</item>
+        <item name="alertDialogTheme">@style/Theme.App.Dialog</item>
+        <item name="dialogCornerRadius">@dimen/dialog_radius</item>
     </style>
-    <style name="footButton" parent="Theme.AppCompat.DayNight.DarkActionBar">
-        <item name="colorPrimary">@color/purple_500</item>
+
+    <!-- 白色 ActionBar -->
+    <style name="Widget.App.ActionBar" parent="Widget.MaterialComponents.ActionBar.Surface">
+        <item name="android:background">@color/g_surface</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:titleTextStyle">@style/TextAppearance.App.ActionBar.Title</item>
+    </style>
+
+    <style name="TextAppearance.App.ActionBar.Title" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/g_on_surface</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- ActionBar 主题覆盖：深色文字 / 图标（叠在白底上） -->
+    <style name="ThemeOverlay.App.ActionBar" parent="ThemeOverlay.MaterialComponents.ActionBar.Surface">
+        <item name="android:textColorPrimary">@color/g_on_surface</item>
+        <item name="android:textColorSecondary">@color/g_on_surface_variant</item>
+        <item name="colorControlNormal">@color/g_on_surface_variant</item>
+        <item name="actionMenuTextColor">@color/g_on_surface</item>
+        <item name="android:colorBackground">@color/g_surface</item>
+    </style>
+
+    <!-- 对话框主题（供 android.app.AlertDialog 使用） -->
+    <style name="Theme.App.Dialog" parent="Theme.MaterialComponents.Light.Dialog.Alert.Bridge">
+        <item name="colorPrimary">@color/g_primary</item>
+        <item name="colorPrimaryVariant">@color/g_primary_variant</item>
+        <item name="colorOnPrimary">@color/g_on_primary</item>
+        <item name="colorSecondary">@color/g_primary</item>
+        <item name="colorSurface">@color/g_surface</item>
+        <item name="colorOnSurface">@color/g_on_surface</item>
+        <item name="android:textColorPrimary">@color/g_on_surface</item>
+        <item name="android:textColorSecondary">@color/g_on_surface_variant</item>
+        <item name="dialogCornerRadius">@dimen/dialog_radius</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+    </style>
+
+    <!-- 底部导航沿用（图标/文字色由布局里的 selector 控制） -->
+    <style name="footButton" parent="ThemeOverlay.MaterialComponents.Light">
+        <item name="colorPrimary">@color/g_primary</item>
+        <item name="colorSecondary">@color/g_primary</item>
+        <item name="colorOnSurface">@color/g_on_surface</item>
+        <item name="android:textColorPrimary">@color/g_on_surface</item>
     </style>
 </resources>

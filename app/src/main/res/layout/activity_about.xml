@@ -2,429 +2,490 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/container"
+    android:background="@color/g_background"
     tools:context=".activity.Settings">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="@dimen/width_margin">
+            android:paddingHorizontal="@dimen/width_margin"
+            android:paddingTop="@dimen/screen_padding_top"
+            android:paddingBottom="@dimen/screen_padding_bottom">
 
-            <LinearLayout
-                android:id="@+id/github_link"
+            <!-- 开发者信息（毛玻璃卡） -->
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                tools:ignore="UseCompoundDrawables">
+                android:background="@drawable/glass_card"
+                android:clipToOutline="true"
+                android:elevation="@dimen/card_elevation">
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:contentDescription="@string/icon"
-                    android:paddingVertical="10dp"
-                    app:srcCompat="@drawable/avatar" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="@string/developer"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/github_project_link"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                tools:ignore="UseCompoundDrawables">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="10dp"
-                    app:srcCompat="@drawable/logo_github" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="@string/github_project"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="15dp"
-                    app:srcCompat="@drawable/ic_jump_24dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/github_app_link"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                tools:ignore="UseCompoundDrawables">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="10dp"
-                    app:srcCompat="@drawable/logo_github" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="@string/github_open_source"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="15dp"
-                    app:srcCompat="@drawable/ic_jump_24dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/coolapk_link"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                tools:ignore="UseCompoundDrawables">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="10dp"
-                    app:srcCompat="@drawable/logo_coolapk" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="@string/coolapk_text"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="15dp"
-                    app:srcCompat="@drawable/ic_jump_24dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lanzou_link"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                tools:ignore="UseCompoundDrawables">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="10dp"
-                    app:srcCompat="@drawable/logo_lanzou" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="@string/lanzou_password"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="15dp"
-                    app:srcCompat="@drawable/ic_jump_24dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/qq_channel_link"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                tools:ignore="UseCompoundDrawables">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="10dp"
-                    app:srcCompat="@drawable/logo_qq_channel" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="@string/qq_channel_text"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="15dp"
-                    app:srcCompat="@drawable/ic_jump_24dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/telegram_group"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                tools:ignore="UseCompoundDrawables">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="10dp"
-                    app:srcCompat="@drawable/logo_telegram" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="@string/tg_group_text"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="15dp"
-                    app:srcCompat="@drawable/ic_jump_24dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/telegram_channel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                tools:ignore="UseCompoundDrawables">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="10dp"
-                    app:srcCompat="@drawable/logo_telegram" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="@string/tg_channel_text"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="15dp"
-                    app:srcCompat="@drawable/ic_jump_24dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/website_link"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                tools:ignore="UseCompoundDrawables">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="10dp"
-                    app:srcCompat="@drawable/logo_freezeit" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="@string/freezeit_website"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="15dp"
-                    app:srcCompat="@drawable/ic_jump_24dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/tutorial_link"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                tools:ignore="UseCompoundDrawables">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="10dp"
-                    app:srcCompat="@drawable/logo_help" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="@string/freezeit_tutorial_text"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="15dp"
-                    app:srcCompat="@drawable/ic_jump_24dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/changelog_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                tools:ignore="UseCompoundDrawables">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="10dp"
-                    app:srcCompat="@drawable/logo_logcat" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="@string/online_changelog"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="15dp"
-                    app:srcCompat="@drawable/ic_jump_24dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/privacy_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                tools:ignore="UseCompoundDrawables">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="10dp"
-                    app:srcCompat="@drawable/logo_privacy" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="@string/privacy_title"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/wechat_pay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                tools:ignore="UseCompoundDrawables">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/icon"
-                    android:padding="10dp"
-                    app:srcCompat="@drawable/logo_wechatpay" />
-
-                <TextView
+                <LinearLayout
+                    android:id="@+id/github_link"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="88dp"
+                        android:layout_height="88dp"
+                        android:contentDescription="@string/icon"
+                        android:padding="6dp"
+                        app:srcCompat="@drawable/avatar" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:text="@string/developer"
+                        android:textColor="@color/g_on_surface"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- 链接列表卡（毛玻璃） -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/card_spacing"
+                android:background="@drawable/glass_card"
+                android:clipToOutline="true"
+                android:elevation="@dimen/card_elevation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <LinearLayout
+                        android:id="@+id/github_project_link"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="8dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="8dp"
+                            app:srcCompat="@drawable/logo_github" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/github_project"
+                            android:textColor="@color/g_on_surface"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/ic_jump_24dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/github_app_link"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="8dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="8dp"
+                            app:srcCompat="@drawable/logo_github" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/github_open_source"
+                            android:textColor="@color/g_on_surface"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/ic_jump_24dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/coolapk_link"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="8dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="8dp"
+                            app:srcCompat="@drawable/logo_coolapk" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/coolapk_text"
+                            android:textColor="@color/g_on_surface"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/ic_jump_24dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lanzou_link"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="8dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="8dp"
+                            app:srcCompat="@drawable/logo_lanzou" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/lanzou_password"
+                            android:textColor="@color/g_on_surface"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/ic_jump_24dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/qq_channel_link"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="8dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="8dp"
+                            app:srcCompat="@drawable/logo_qq_channel" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/qq_channel_text"
+                            android:textColor="@color/g_on_surface"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/ic_jump_24dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/telegram_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="8dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="8dp"
+                            app:srcCompat="@drawable/logo_telegram" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/tg_group_text"
+                            android:textColor="@color/g_on_surface"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/ic_jump_24dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/telegram_channel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="8dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="8dp"
+                            app:srcCompat="@drawable/logo_telegram" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/tg_channel_text"
+                            android:textColor="@color/g_on_surface"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/ic_jump_24dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/website_link"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="8dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="8dp"
+                            app:srcCompat="@drawable/logo_freezeit" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/freezeit_website"
+                            android:textColor="@color/g_on_surface"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/ic_jump_24dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/tutorial_link"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="8dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="8dp"
+                            app:srcCompat="@drawable/logo_help" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/freezeit_tutorial_text"
+                            android:textColor="@color/g_on_surface"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/ic_jump_24dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/changelog_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="8dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="8dp"
+                            app:srcCompat="@drawable/logo_logcat" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/online_changelog"
+                            android:textColor="@color/g_on_surface"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/ic_jump_24dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/privacy_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="8dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:contentDescription="@string/icon"
+                            android:padding="8dp"
+                            app:srcCompat="@drawable/logo_privacy" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/privacy_title"
+                            android:textColor="@color/g_on_surface"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- 赞赏卡（毛玻璃） -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/card_spacing"
+                android:background="@drawable/glass_card"
+                android:clipToOutline="true"
+                android:elevation="@dimen/card_elevation">
+
+                <LinearLayout
+                    android:id="@+id/wechat_pay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
                     android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="@string/donate_wechat"
-                    android:textSize="16sp" />
-            </LinearLayout>
+                    android:orientation="horizontal"
+                    android:padding="@dimen/card_padding"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:contentDescription="@string/icon"
+                        android:padding="6dp"
+                        app:srcCompat="@drawable/logo_wechatpay" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/donate_wechat"
+                        android:textColor="@color/g_on_surface"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </FrameLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="20dp"
-                android:text="@string/versionName" />
+                android:padding="24dp"
+                android:text="@string/versionName"
+                android:textColor="@color/g_on_surface_variant"
+                android:textSize="13sp" />
 
         </LinearLayout>
     </ScrollView>

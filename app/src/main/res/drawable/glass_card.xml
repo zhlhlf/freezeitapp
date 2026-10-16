@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  毛玻璃卡片（可全局复用）：顶部高光渐变 + 半透明白底 + 1dp 浅亮边 + 圆角。
+  说明：这是「半透明 + 高光 + 亮边 + 投影」拼出的观感，不是真正的高斯模糊。
+  投影由使用处的 android:elevation / app:cardElevation 提供。
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 1) 顶部高光渐变 -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/card_radius" />
+            <gradient
+                android:angle="270"
+                android:endColor="@color/glass_highlight_end"
+                android:startColor="@color/glass_highlight"
+                android:type="linear" />
+        </shape>
+    </item>
+
+    <!-- 2) 半透明白底 -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/card_radius" />
+            <solid android:color="@color/glass_fill" />
+        </shape>
+    </item>
+
+    <!-- 3) 1dp 浅亮边 -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/card_radius" />
+            <stroke
+                android:width="@dimen/card_stroke"
+                android:color="@color/glass_stroke" />
+        </shape>
+    </item>
+</layer-list>
