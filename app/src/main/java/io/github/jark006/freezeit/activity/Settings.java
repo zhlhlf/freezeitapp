@@ -34,7 +34,8 @@ import io.github.jark006.freezeit.Utils;
 public class Settings extends AppCompatActivity implements View.OnClickListener {
     final int INIT_UI = 1, SET_VAR_SUCCESS = 2, SET_VAR_FAIL = 3;
 
-    Spinner freezeModeSpinner, reFreezeTimeoutSpinner, wakeupTimeoutSpinner;
+    Spinner freezeModeSpinner, reFreezeTimeoutSpinner, wakeupTimeoutSpinner,
+            netMinPayloadTcpSpinner, netMinPayloadUdpSpinner;
     SeekBar freezeTimeoutSeekbar, terminateTimeoutSeekbar;
     TextView freezeTimeoutValueText, terminateTimeoutValueText;
 
@@ -53,6 +54,9 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
     final int doubleCellIdx = 15;
     final int lmkIdx = 16;
     final int dozeIdx = 17;
+
+    final int netMinPayloadTcpIdx = 21;   // Re:Kernel TCP 报文阈值索引
+    final int netMinPayloadUdpIdx = 22;   // Re:Kernel UDP 报文阈值索引
 
     final int debugIdx = 30;
 
@@ -86,6 +90,8 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
         freezeModeSpinner = findViewById(R.id.freeze_mode_spinner);
         reFreezeTimeoutSpinner = findViewById(R.id.refreeze_timeout_spinner);
         wakeupTimeoutSpinner = findViewById(R.id.wakeup_timeout_spinner);
+        netMinPayloadTcpSpinner = findViewById(R.id.net_min_payload_tcp_spinner);
+        netMinPayloadUdpSpinner = findViewById(R.id.net_min_payload_udp_spinner);
 
         freezeTimeoutValueText = findViewById(R.id.freeze_timeout_value_text);
         terminateTimeoutValueText = findViewById(R.id.terminate_timeout_value_text);
@@ -270,6 +276,8 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
                     InitSpinner(freezeModeSpinner, freezeModeIdx);
                     InitSpinner(reFreezeTimeoutSpinner, reFreezeTimeoutIdx);
                     InitSpinner(wakeupTimeoutSpinner, wakeupTimeoutIdx);
+                    InitSpinner(netMinPayloadTcpSpinner, netMinPayloadTcpIdx);
+                    InitSpinner(netMinPayloadUdpSpinner, netMinPayloadUdpIdx);
 
                     InitSeekbar(freezeTimeoutSeekbar, freezeTimeoutValueText, freezeTimeoutIdx);
                     InitSeekbar(terminateTimeoutSeekbar, terminateTimeoutValueText, terminateTimeoutIdx);
