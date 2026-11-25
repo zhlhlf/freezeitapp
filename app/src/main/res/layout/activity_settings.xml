@@ -168,12 +168,7 @@
                     android:maxHeight="28dp"
                     android:min="1"
                     android:minHeight="28dp"
-                    android:paddingBottom="12dp"
-                    android:progressDrawable="@drawable/seekbar_bg"
-                    android:progressTint="@color/g_primary"
-                    android:thumb="@drawable/thumb"
-                    android:thumbOffset="0dp"
-                    android:thumbTint="@color/g_primary" />
+                    android:paddingBottom="12dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -217,12 +212,7 @@
                     android:max="120"
                     android:maxHeight="28dp"
                     android:min="3"
-                    android:minHeight="28dp"
-                    android:progressDrawable="@drawable/seekbar_bg"
-                    android:progressTint="@color/g_primary"
-                    android:thumb="@drawable/thumb"
-                    android:thumbOffset="0dp"
-                    android:thumbTint="@color/g_primary" />
+                    android:minHeight="28dp" />
             </LinearLayout>
         </FrameLayout>
 
@@ -459,12 +449,7 @@
                     android:maxHeight="28dp"
                     android:min="0"
                     android:minHeight="28dp"
-                    android:paddingBottom="12dp"
-                    android:progressDrawable="@drawable/seekbar_bg"
-                    android:progressTint="@color/g_primary"
-                    android:thumb="@drawable/thumb"
-                    android:thumbOffset="0dp"
-                    android:thumbTint="@color/g_primary" />
+                    android:paddingBottom="12dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -529,12 +514,7 @@
                     android:maxHeight="28dp"
                     android:min="0"
                     android:minHeight="28dp"
-                    android:paddingBottom="12dp"
-                    android:progressDrawable="@drawable/seekbar_bg"
-                    android:progressTint="@color/g_primary"
-                    android:thumb="@drawable/thumb"
-                    android:thumbOffset="0dp"
-                    android:thumbTint="@color/g_primary" />
+                    android:paddingBottom="12dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

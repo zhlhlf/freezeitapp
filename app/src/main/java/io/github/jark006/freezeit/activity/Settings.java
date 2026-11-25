@@ -235,7 +235,12 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
                         msg.what = NET_THRESHOLD_SET;
                     } else {
                         msg.what = SET_VAR_FAIL;
-                        msg.obj = res.isEmpty() ? getString(R.string.setup_failed) : res;
+                        if (res.contains("非法命令")) {
+                            // 旧版守护进程没有 setSettingsVar16
+                            msg.obj = getString(R.string.daemon_too_old);
+                        } else {
+                            msg.obj = res.isEmpty() ? getString(R.string.setup_failed) : res;
+                        }
                     }
                     handler.sendMessage(msg);
                 }).start();

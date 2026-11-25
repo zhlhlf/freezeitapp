@@ -194,4 +194,5 @@
     <string name="byte_unit">B</string>
     <string name="net_min_payload_range_min">0</string>
     <string name="net_min_payload_range_max">20000</string>
+    <string name="daemon_too_old">Daemon is outdated: reboot the device or reflash the module (needs 3.3.9+)</string>
 </resources>
