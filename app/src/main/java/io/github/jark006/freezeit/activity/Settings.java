@@ -38,8 +38,8 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
             NET_THRESHOLD_SET = 4;
 
     Spinner freezeModeSpinner, reFreezeTimeoutSpinner, wakeupTimeoutSpinner;
-    Slider netTcpSlider, netUdpSlider, freezeTimeoutSlider, terminateTimeoutSlider;
-    TextView netTcpValueText, netUdpValueText;
+    Slider netStatSlider, freezeTimeoutSlider, terminateTimeoutSlider;
+    TextView netStatValueText;
 
     TextView freezeTimeoutValueText, terminateTimeoutValueText;
 
@@ -59,12 +59,11 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
     final int lmkIdx = 16;
     final int dozeIdx = 17;
 
-    // Re:Kernel 报文阈值：u16 小端存在 [21..22](TCP) 与 [23..24](UDP)，单位字节，0=内核默认
-    final int netTcpOffset = 21;
-    final int netUdpOffset = 23;
-    final int netWhichTcp = 0;
-    final int netWhichUdp = 1;
-    final int netThresholdMax = 20000;
+    // Re:Kernel 1 秒流量阈值：u16 小端存在 [21..22]，单位 KB，0=任意流量都算
+    final int netStatOffset = 21;
+    final int netStatWhich = 0;
+    final int netStatMaxKb = 1000;
+    final int netStatDefaultKb = 5;
 
     final int debugIdx = 30;
 
@@ -98,10 +97,8 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
         freezeModeSpinner = findViewById(R.id.freeze_mode_spinner);
         reFreezeTimeoutSpinner = findViewById(R.id.refreeze_timeout_spinner);
         wakeupTimeoutSpinner = findViewById(R.id.wakeup_timeout_spinner);
-        netTcpSlider = findViewById(R.id.seekBarNetTcp);
-        netUdpSlider = findViewById(R.id.seekBarNetUdp);
-        netTcpValueText = findViewById(R.id.net_min_payload_tcp_value);
-        netUdpValueText = findViewById(R.id.net_min_payload_udp_value);
+        netStatSlider = findViewById(R.id.seekBarNetStat);
+        netStatValueText = findViewById(R.id.net_stat_value);
 
         freezeTimeoutValueText = findViewById(R.id.freeze_timeout_value_text);
         terminateTimeoutValueText = findViewById(R.id.terminate_timeout_value_text);
@@ -199,12 +196,13 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
         });
     }
 
-    // Re:Kernel 报文阈值：拖动结束才下发，避免过程中刷屏
+    // Re:Kernel 1 秒流量阈值：拖动结束才下发，避免过程中刷屏
     void InitNetThresholdSeekbar(Slider slider, TextView textView, int offset, int which) {
-        final int value = (settingsVar[offset] & 0xFF) | ((settingsVar[offset + 1] & 0xFF) << 8);
-        slider.setValue(Math.min(value, netThresholdMax));
+        int value = (settingsVar[offset] & 0xFF) | ((settingsVar[offset + 1] & 0xFF) << 8);
+        if (value > netStatMaxKb) value = netStatDefaultKb;
+        slider.setValue(value);
         updateNetThresholdText(textView, value);
-        slider.setLabelFormatter(v -> (int) v + " B");
+        slider.setLabelFormatter(v -> (int) v + " KB");
 
         slider.addOnChangeListener((sb, v, fromUser) -> updateNetThresholdText(textView, (int) v));
         slider.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
@@ -246,7 +244,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
     }
 
     void updateNetThresholdText(TextView textView, int value) {
-        textView.setText(value == 0 ? getString(R.string.net_min_payload_default) : String.valueOf(value));
+        textView.setText(String.valueOf(value));
     }
 
     void InitSeekbar(Slider slider, TextView textView, int idx) {
@@ -333,8 +331,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
                     InitSpinner(freezeModeSpinner, freezeModeIdx);
                     InitSpinner(reFreezeTimeoutSpinner, reFreezeTimeoutIdx);
                     InitSpinner(wakeupTimeoutSpinner, wakeupTimeoutIdx);
-                    InitNetThresholdSeekbar(netTcpSlider, netTcpValueText, netTcpOffset, netWhichTcp);
-                    InitNetThresholdSeekbar(netUdpSlider, netUdpValueText, netUdpOffset, netWhichUdp);
+                    InitNetThresholdSeekbar(netStatSlider, netStatValueText, netStatOffset, netStatWhich);
 
                     InitSeekbar(freezeTimeoutSlider, freezeTimeoutValueText, freezeTimeoutIdx);
                     InitSeekbar(terminateTimeoutSlider, terminateTimeoutValueText, terminateTimeoutIdx);

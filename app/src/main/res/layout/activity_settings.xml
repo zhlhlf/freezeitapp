@@ -415,79 +415,35 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/net_min_payload_tcp_title"
+                        android:id="@+id/net_stat_title"
                         style="@style/App.RowTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/net_min_payload_tcp_title" />
+                        android:text="@string/net_stat_title" />
 
                     <TextView
-                        android:id="@+id/net_min_payload_tcp_value"
+                        android:id="@+id/net_stat_value"
                         style="@style/App.ValueText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/net_min_payload_default" />
+                        android:text="@string/net_stat_default" />
 
                     <TextView
                         style="@style/App.RowCaption"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingHorizontal="6dp"
-                        android:text="@string/byte_unit" />
+                        android:text="@string/kb_unit" />
                 </LinearLayout>
 
                 <com.google.android.material.slider.Slider
-                    android:id="@+id/seekBarNetTcp"
+                    android:id="@+id/seekBarNetStat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:stepSize="1"
                     android:valueFrom="0"
-                    android:valueTo="20000"
-                    app:labelBehavior="floating" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginVertical="10dp"
-                    android:background="@color/g_outline" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/net_min_payload_udp_title"
-                        style="@style/App.RowTitle"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/net_min_payload_udp_title" />
-
-                    <TextView
-                        android:id="@+id/net_min_payload_udp_value"
-                        style="@style/App.ValueText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/net_min_payload_default" />
-
-                    <TextView
-                        style="@style/App.RowCaption"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingHorizontal="6dp"
-                        android:text="@string/byte_unit" />
-                </LinearLayout>
-
-                <com.google.android.material.slider.Slider
-                    android:id="@+id/seekBarNetUdp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:stepSize="1"
-                    android:valueFrom="0"
-                    android:valueTo="20000"
+                    android:valueTo="1000"
                     app:labelBehavior="floating" />
 
             </LinearLayout>

@@ -166,12 +166,10 @@
         如果冻结，会引起很多系统异常现象，即使设为杀死后台，也会被系统不断重复拉起，这种反复拉锯会加速手机耗电。\n\n
         如果你不清楚你的行为会造成什么后果，则建议系统应用默认一律“🍀️自由后台”。</string>
     <string name="rekernel_section_title">Re:Kernel 网络事件</string>
-    <string name="net_min_payload_tcp_title">TCP 报文阈值</string>
-    <string name="net_min_payload_udp_title">UDP 报文阈值</string>
-    <string name="net_min_payload_tips">小于阈值的报文会被内核直接丢弃，不会唤醒已冻结的应用。拖动设置 0-20000 字节；0 表示沿用内核模块默认值（TCP 1024B / UDP 512B）。调高更省电，调低更灵敏。</string>
-    <string name="net_min_payload_default">默认</string>
+    <string name="net_min_payload_tips">内核每秒把每个应用的网络流量合计上报一次，仅当 1 秒总量超过阈值时才唤醒已冻结的应用。默认 5KB；0 表示任意流量都算活跃。调高更省电，调低更灵敏。</string>
+    <string name="net_stat_title">1 秒流量阈值</string>
+    <string name="net_stat_default">5</string>
+    <string name="kb_unit">KB</string>
     <string name="byte_unit">B</string>
-    <string name="net_min_payload_range_min">0</string>
-    <string name="net_min_payload_range_max">20000</string>
     <string name="daemon_too_old">守护进程版本过旧，请重启设备或重刷模块（需 3.3.9 及以上）</string>
 </resources>

@@ -187,12 +187,10 @@
          If it is frozen, it will cause many system abnormalities. Even if it is set to terminate, it will be repeatedly pulled up by the system. This repeated sawing will accelerate the power consumption of the mobile phone. \n\n
          If you don\'t know what the consequences of your actions will be, it is recommended that system applications default to 🍀️Free.</string>
     <string name="rekernel_section_title">Re:Kernel Network Events</string>
-    <string name="net_min_payload_tcp_title">TCP payload threshold</string>
-    <string name="net_min_payload_udp_title">UDP payload threshold</string>
-    <string name="net_min_payload_tips">Packets smaller than the threshold are dropped by the kernel and will not wake a frozen app. Drag to set 0-20000 bytes; 0 keeps the module default (TCP 1024B / UDP 512B). Higher = fewer wakeups, lower = more sensitive.</string>
-    <string name="net_min_payload_default">Default</string>
+    <string name="net_min_payload_tips">The kernel sums each app\'s network traffic and reports it once per second. A frozen app is only woken when the 1-second total exceeds the threshold. Default 5 KB; 0 means any traffic counts. Higher = fewer wakeups, lower = more sensitive.</string>
+    <string name="net_stat_title">1s traffic threshold</string>
+    <string name="net_stat_default">5</string>
+    <string name="kb_unit">KB</string>
     <string name="byte_unit">B</string>
-    <string name="net_min_payload_range_min">0</string>
-    <string name="net_min_payload_range_max">20000</string>
     <string name="daemon_too_old">Daemon is outdated: reboot the device or reflash the module (needs 3.3.9+)</string>
 </resources>
