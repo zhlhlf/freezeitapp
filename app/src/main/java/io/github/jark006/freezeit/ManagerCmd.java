@@ -17,6 +17,7 @@ public class ManagerCmd {
     public final static byte setAppCfg = 21;      // send "uid cfg isPermissive\n..." see CMD:getAppCfg
     public final static byte setAppLabel = 22;    // send "uid label\n..."
     public final static byte setSettingsVar = 23; // send bytes[2]: [0]index [1]value
+    public final static byte setSettingsVar16 = 24; // send bytes[4]: [0]which(0=TCP,1=UDP) [1]保留 [2..3]值(u16 小端)
 
     // 其他命令 无附加数据 No additional data required
     public final static byte clearLog = 61;         // return string: "log" //清理日志

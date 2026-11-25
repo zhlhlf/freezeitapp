@@ -189,21 +189,9 @@
     <string name="rekernel_section_title">Re:Kernel Network Events</string>
     <string name="net_min_payload_tcp_title">TCP payload threshold</string>
     <string name="net_min_payload_udp_title">UDP payload threshold</string>
-    <string name="net_min_payload_tips">Packets smaller than the threshold are ignored by the kernel and do not wake a frozen app. Higher = fewer wakeups, lower = more sensitive (video calls need a low UDP value). 0 uses the kernel module default (TCP 1024B / UDP 512B).</string>
-    <string-array name="net_min_payload_tcp">
-        <item>Default (1024 B)</item>
-        <item>512 B</item>
-        <item>1024 B</item>
-        <item>2048 B</item>
-        <item>4096 B</item>
-        <item>8192 B</item>
-    </string-array>
-    <string-array name="net_min_payload_udp">
-        <item>Default (512 B)</item>
-        <item>256 B</item>
-        <item>512 B</item>
-        <item>1024 B</item>
-        <item>2048 B</item>
-        <item>4096 B</item>
-    </string-array>
+    <string name="net_min_payload_tips">Packets smaller than the threshold are dropped by the kernel and will not wake a frozen app. Drag to set 0-20000 bytes; 0 keeps the module default (TCP 1024B / UDP 512B). Higher = fewer wakeups, lower = more sensitive.</string>
+    <string name="net_min_payload_default">Default</string>
+    <string name="byte_unit">B</string>
+    <string name="net_min_payload_range_min">0</string>
+    <string name="net_min_payload_range_max">20000</string>
 </resources>

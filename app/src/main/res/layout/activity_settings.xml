@@ -435,13 +435,61 @@
                         android:layout_weight="1"
                         android:text="@string/net_min_payload_tcp_title" />
 
-                    <Spinner
-                        android:id="@+id/net_min_payload_tcp_spinner"
+                    <TextView
+                        android:id="@+id/net_min_payload_tcp_value"
+                        style="@style/App.ValueText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:entries="@array/net_min_payload_tcp"
-                        android:spinnerMode="dropdown" />
+                        android:text="@string/net_min_payload_default" />
+
+                    <TextView
+                        style="@style/App.RowCaption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="6dp"
+                        android:text="@string/byte_unit" />
                 </LinearLayout>
+
+                <SeekBar
+                    android:id="@+id/seekBarNetTcp"
+                    style="@style/Widget.AppCompat.SeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="20000"
+                    android:maxHeight="28dp"
+                    android:min="0"
+                    android:minHeight="28dp"
+                    android:paddingBottom="12dp"
+                    android:progressDrawable="@drawable/seekbar_bg"
+                    android:progressTint="@color/g_primary"
+                    android:thumb="@drawable/thumb"
+                    android:thumbOffset="0dp"
+                    android:thumbTint="@color/g_primary" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/App.RowCaption"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/net_min_payload_range_min" />
+
+                    <TextView
+                        style="@style/App.RowCaption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/net_min_payload_range_max" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="@color/g_outline" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -457,13 +505,56 @@
                         android:layout_weight="1"
                         android:text="@string/net_min_payload_udp_title" />
 
-                    <Spinner
-                        android:id="@+id/net_min_payload_udp_spinner"
+                    <TextView
+                        android:id="@+id/net_min_payload_udp_value"
+                        style="@style/App.ValueText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:entries="@array/net_min_payload_udp"
-                        android:spinnerMode="dropdown" />
+                        android:text="@string/net_min_payload_default" />
+
+                    <TextView
+                        style="@style/App.RowCaption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="6dp"
+                        android:text="@string/byte_unit" />
                 </LinearLayout>
+
+                <SeekBar
+                    android:id="@+id/seekBarNetUdp"
+                    style="@style/Widget.AppCompat.SeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="20000"
+                    android:maxHeight="28dp"
+                    android:min="0"
+                    android:minHeight="28dp"
+                    android:paddingBottom="12dp"
+                    android:progressDrawable="@drawable/seekbar_bg"
+                    android:progressTint="@color/g_primary"
+                    android:thumb="@drawable/thumb"
+                    android:thumbOffset="0dp"
+                    android:thumbTint="@color/g_primary" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/App.RowCaption"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/net_min_payload_range_min" />
+
+                    <TextView
+                        style="@style/App.RowCaption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/net_min_payload_range_max" />
+                </LinearLayout>
+
             </LinearLayout>
         </FrameLayout>
 

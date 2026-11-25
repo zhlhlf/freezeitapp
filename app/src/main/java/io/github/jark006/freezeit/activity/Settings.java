@@ -2,6 +2,7 @@ package io.github.jark006.freezeit.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import java.nio.charset.StandardCharsets;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -32,10 +33,12 @@ import io.github.jark006.freezeit.Utils;
 
 
 public class Settings extends AppCompatActivity implements View.OnClickListener {
-    final int INIT_UI = 1, SET_VAR_SUCCESS = 2, SET_VAR_FAIL = 3;
+    final int INIT_UI = 1, SET_VAR_SUCCESS = 2, SET_VAR_FAIL = 3,
+            NET_THRESHOLD_SET = 4;
 
-    Spinner freezeModeSpinner, reFreezeTimeoutSpinner, wakeupTimeoutSpinner,
-            netMinPayloadTcpSpinner, netMinPayloadUdpSpinner;
+    Spinner freezeModeSpinner, reFreezeTimeoutSpinner, wakeupTimeoutSpinner;
+    SeekBar netTcpSeekbar, netUdpSeekbar;
+    TextView netTcpValueText, netUdpValueText;
     SeekBar freezeTimeoutSeekbar, terminateTimeoutSeekbar;
     TextView freezeTimeoutValueText, terminateTimeoutValueText;
 
@@ -55,8 +58,12 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
     final int lmkIdx = 16;
     final int dozeIdx = 17;
 
-    final int netMinPayloadTcpIdx = 21;   // Re:Kernel TCP 报文阈值索引
-    final int netMinPayloadUdpIdx = 22;   // Re:Kernel UDP 报文阈值索引
+    // Re:Kernel 报文阈值：u16 小端存在 [21..22](TCP) 与 [23..24](UDP)，单位字节，0=内核默认
+    final int netTcpOffset = 21;
+    final int netUdpOffset = 23;
+    final int netWhichTcp = 0;
+    final int netWhichUdp = 1;
+    final int netThresholdMax = 20000;
 
     final int debugIdx = 30;
 
@@ -90,8 +97,10 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
         freezeModeSpinner = findViewById(R.id.freeze_mode_spinner);
         reFreezeTimeoutSpinner = findViewById(R.id.refreeze_timeout_spinner);
         wakeupTimeoutSpinner = findViewById(R.id.wakeup_timeout_spinner);
-        netMinPayloadTcpSpinner = findViewById(R.id.net_min_payload_tcp_spinner);
-        netMinPayloadUdpSpinner = findViewById(R.id.net_min_payload_udp_spinner);
+        netTcpSeekbar = findViewById(R.id.seekBarNetTcp);
+        netUdpSeekbar = findViewById(R.id.seekBarNetUdp);
+        netTcpValueText = findViewById(R.id.net_min_payload_tcp_value);
+        netUdpValueText = findViewById(R.id.net_min_payload_udp_value);
 
         freezeTimeoutValueText = findViewById(R.id.freeze_timeout_value_text);
         terminateTimeoutValueText = findViewById(R.id.terminate_timeout_value_text);
@@ -189,6 +198,55 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
         });
     }
 
+    // Re:Kernel 报文阈值：拖动结束才下发，避免过程中刷屏
+    void InitNetThresholdSeekbar(SeekBar seekBar, TextView textView, int offset, int which) {
+        final int value = (settingsVar[offset] & 0xFF) | ((settingsVar[offset + 1] & 0xFF) << 8);
+        seekBar.setMax(netThresholdMax);
+        seekBar.setProgress(Math.min(value, netThresholdMax));
+        updateNetThresholdText(textView, value);
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar sb, int progress, boolean fromUser) {
+                updateNetThresholdText(textView, progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar sb) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar sb) {
+                final int v = sb.getProgress();
+                new Thread(() -> {
+                    byte[] req = {
+                            (byte) which, 0,
+                            (byte) (v & 0xFF), (byte) ((v >> 8) & 0xFF)
+                    };
+                    int len = Utils.freezeitTask(ManagerCmd.setSettingsVar16, req);
+                    String res = len > 0
+                            ? new String(StaticData.response, 0, len, StandardCharsets.UTF_8)
+                            : "";
+                    Message msg = new Message();
+                    if (res.startsWith("success")) {
+                        settingsVar[offset] = (byte) (v & 0xFF);
+                        settingsVar[offset + 1] = (byte) ((v >> 8) & 0xFF);
+                        // 字节已经在上面写好；不能走 SET_VAR_SUCCESS，那条按 [idx]=[value] 回写会写坏 settingsVar[0]
+                        msg.what = NET_THRESHOLD_SET;
+                    } else {
+                        msg.what = SET_VAR_FAIL;
+                        msg.obj = res.isEmpty() ? getString(R.string.setup_failed) : res;
+                    }
+                    handler.sendMessage(msg);
+                }).start();
+            }
+        });
+    }
+
+    void updateNetThresholdText(TextView textView, int value) {
+        textView.setText(value == 0 ? getString(R.string.net_min_payload_default) : String.valueOf(value));
+    }
+
     void InitSeekbar(SeekBar seekBar, TextView textView, int idx) {
         seekBar.setProgress(settingsVar[idx]);
         textView.setText(String.valueOf(settingsVar[idx]));
@@ -276,8 +334,8 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
                     InitSpinner(freezeModeSpinner, freezeModeIdx);
                     InitSpinner(reFreezeTimeoutSpinner, reFreezeTimeoutIdx);
                     InitSpinner(wakeupTimeoutSpinner, wakeupTimeoutIdx);
-                    InitSpinner(netMinPayloadTcpSpinner, netMinPayloadTcpIdx);
-                    InitSpinner(netMinPayloadUdpSpinner, netMinPayloadUdpIdx);
+                    InitNetThresholdSeekbar(netTcpSeekbar, netTcpValueText, netTcpOffset, netWhichTcp);
+                    InitNetThresholdSeekbar(netUdpSeekbar, netUdpValueText, netUdpOffset, netWhichUdp);
 
                     InitSeekbar(freezeTimeoutSeekbar, freezeTimeoutValueText, freezeTimeoutIdx);
                     InitSeekbar(terminateTimeoutSeekbar, terminateTimeoutValueText, terminateTimeoutIdx);
@@ -292,6 +350,9 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
 
                 case SET_VAR_SUCCESS:
                     settingsVar[varIndexForHandle] = (byte) newValueForHandle;
+                    break;
+
+                case NET_THRESHOLD_SET:
                     break;
 
                 case SET_VAR_FAIL:
