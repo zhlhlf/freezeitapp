@@ -15,14 +15,15 @@ import android.os.Looper;
 import android.os.Message;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.SeekBar;
 import android.widget.Spinner;
+import com.google.android.material.slider.Slider;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -37,9 +38,9 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
             NET_THRESHOLD_SET = 4;
 
     Spinner freezeModeSpinner, reFreezeTimeoutSpinner, wakeupTimeoutSpinner;
-    SeekBar netTcpSeekbar, netUdpSeekbar;
+    Slider netTcpSlider, netUdpSlider, freezeTimeoutSlider, terminateTimeoutSlider;
     TextView netTcpValueText, netUdpValueText;
-    SeekBar freezeTimeoutSeekbar, terminateTimeoutSeekbar;
+
     TextView freezeTimeoutValueText, terminateTimeoutValueText;
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
@@ -97,16 +98,16 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
         freezeModeSpinner = findViewById(R.id.freeze_mode_spinner);
         reFreezeTimeoutSpinner = findViewById(R.id.refreeze_timeout_spinner);
         wakeupTimeoutSpinner = findViewById(R.id.wakeup_timeout_spinner);
-        netTcpSeekbar = findViewById(R.id.seekBarNetTcp);
-        netUdpSeekbar = findViewById(R.id.seekBarNetUdp);
+        netTcpSlider = findViewById(R.id.seekBarNetTcp);
+        netUdpSlider = findViewById(R.id.seekBarNetUdp);
         netTcpValueText = findViewById(R.id.net_min_payload_tcp_value);
         netUdpValueText = findViewById(R.id.net_min_payload_udp_value);
 
         freezeTimeoutValueText = findViewById(R.id.freeze_timeout_value_text);
         terminateTimeoutValueText = findViewById(R.id.terminate_timeout_value_text);
 
-        freezeTimeoutSeekbar = findViewById(R.id.seekBarTimeout);
-        terminateTimeoutSeekbar = findViewById(R.id.seekBarTerminate);
+        freezeTimeoutSlider = findViewById(R.id.seekBarTimeout);
+        terminateTimeoutSlider = findViewById(R.id.seekBarTerminate);
 
         batterySwitch = findViewById(R.id.switch_battery);
         currentSwitch = findViewById(R.id.switch_current);
@@ -199,25 +200,21 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
     }
 
     // Re:Kernel 报文阈值：拖动结束才下发，避免过程中刷屏
-    void InitNetThresholdSeekbar(SeekBar seekBar, TextView textView, int offset, int which) {
+    void InitNetThresholdSeekbar(Slider slider, TextView textView, int offset, int which) {
         final int value = (settingsVar[offset] & 0xFF) | ((settingsVar[offset + 1] & 0xFF) << 8);
-        seekBar.setMax(netThresholdMax);
-        seekBar.setProgress(Math.min(value, netThresholdMax));
+        slider.setValue(Math.min(value, netThresholdMax));
         updateNetThresholdText(textView, value);
+        slider.setLabelFormatter(v -> (int) v + " B");
 
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        slider.addOnChangeListener((sb, v, fromUser) -> updateNetThresholdText(textView, (int) v));
+        slider.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
             @Override
-            public void onProgressChanged(SeekBar sb, int progress, boolean fromUser) {
-                updateNetThresholdText(textView, progress);
+            public void onStartTrackingTouch(@NonNull Slider sb) {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar sb) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar sb) {
-                final int v = sb.getProgress();
+            public void onStopTrackingTouch(@NonNull Slider sb) {
+                final int v = (int) sb.getValue();
                 new Thread(() -> {
                     byte[] req = {
                             (byte) which, 0,
@@ -252,36 +249,33 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
         textView.setText(value == 0 ? getString(R.string.net_min_payload_default) : String.valueOf(value));
     }
 
-    void InitSeekbar(SeekBar seekBar, TextView textView, int idx) {
-        seekBar.setProgress(settingsVar[idx]);
+    void InitSeekbar(Slider slider, TextView textView, int idx) {
+        slider.setValue(settingsVar[idx]);
         textView.setText(String.valueOf(settingsVar[idx]));
 
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        slider.addOnChangeListener((sb, v, fromUser) -> textView.setText(String.valueOf((int) v)));
+        slider.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                textView.setText(String.valueOf(seekBar.getProgress()));
+            public void onStartTrackingTouch(@NonNull Slider sb) {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                if (settingsVar[idx] == seekBar.getProgress())
+            public void onStopTrackingTouch(@NonNull Slider sb) {
+                final int progress = (int) sb.getValue();
+                if (settingsVar[idx] == progress)
                     return;
 
                 var now = System.currentTimeMillis();
                 if ((now - lastTimestamp) < 1000) {
                     Toast.makeText(getBaseContext(), getString(R.string.slowly_tips), Toast.LENGTH_SHORT).show();
-                    seekBar.setProgress(settingsVar[idx]);//进度条，文字 恢复原值
+                    sb.setValue(settingsVar[idx]); // 恢复原值
                     textView.setText(String.valueOf(settingsVar[idx]));
                     return;
                 }
                 lastTimestamp = now;
 
                 varIndexForHandle = idx;
-                newValueForHandle = seekBar.getProgress();
+                newValueForHandle = progress;
                 setVarTask();
             }
         });
@@ -339,11 +333,11 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
                     InitSpinner(freezeModeSpinner, freezeModeIdx);
                     InitSpinner(reFreezeTimeoutSpinner, reFreezeTimeoutIdx);
                     InitSpinner(wakeupTimeoutSpinner, wakeupTimeoutIdx);
-                    InitNetThresholdSeekbar(netTcpSeekbar, netTcpValueText, netTcpOffset, netWhichTcp);
-                    InitNetThresholdSeekbar(netUdpSeekbar, netUdpValueText, netUdpOffset, netWhichUdp);
+                    InitNetThresholdSeekbar(netTcpSlider, netTcpValueText, netTcpOffset, netWhichTcp);
+                    InitNetThresholdSeekbar(netUdpSlider, netUdpValueText, netUdpOffset, netWhichUdp);
 
-                    InitSeekbar(freezeTimeoutSeekbar, freezeTimeoutValueText, freezeTimeoutIdx);
-                    InitSeekbar(terminateTimeoutSeekbar, terminateTimeoutValueText, terminateTimeoutIdx);
+                    InitSeekbar(freezeTimeoutSlider, freezeTimeoutValueText, freezeTimeoutIdx);
+                    InitSeekbar(terminateTimeoutSlider, terminateTimeoutValueText, terminateTimeoutIdx);
 
                     InitSwitch(batterySwitch, batteryIdx);
                     InitSwitch(currentSwitch, currentIdx);

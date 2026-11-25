@@ -159,16 +159,14 @@
                         android:text="@string/second" />
                 </LinearLayout>
 
-                <SeekBar
+                <com.google.android.material.slider.Slider
                     android:id="@+id/seekBarTimeout"
-                    style="@style/Widget.AppCompat.SeekBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:max="60"
-                    android:maxHeight="28dp"
-                    android:min="1"
-                    android:minHeight="28dp"
-                    android:paddingBottom="12dp" />
+                    android:stepSize="1"
+                    android:valueFrom="1"
+                    android:valueTo="60"
+                    app:labelBehavior="floating" />
 
                 <View
                     android:layout_width="match_parent"
@@ -204,15 +202,14 @@
                         android:text="@string/second" />
                 </LinearLayout>
 
-                <SeekBar
+                <com.google.android.material.slider.Slider
                     android:id="@+id/seekBarTerminate"
-                    style="@style/Widget.AppCompat.SeekBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:max="120"
-                    android:maxHeight="28dp"
-                    android:min="3"
-                    android:minHeight="28dp" />
+                    android:stepSize="1"
+                    android:valueFrom="3"
+                    android:valueTo="120"
+                    app:labelBehavior="floating" />
             </LinearLayout>
         </FrameLayout>
 
@@ -440,35 +437,14 @@
                         android:text="@string/byte_unit" />
                 </LinearLayout>
 
-                <SeekBar
+                <com.google.android.material.slider.Slider
                     android:id="@+id/seekBarNetTcp"
-                    style="@style/Widget.AppCompat.SeekBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:max="20000"
-                    android:maxHeight="28dp"
-                    android:min="0"
-                    android:minHeight="28dp"
-                    android:paddingBottom="12dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/App.RowCaption"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/net_min_payload_range_min" />
-
-                    <TextView
-                        style="@style/App.RowCaption"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/net_min_payload_range_max" />
-                </LinearLayout>
+                    android:stepSize="1"
+                    android:valueFrom="0"
+                    android:valueTo="20000"
+                    app:labelBehavior="floating" />
 
                 <View
                     android:layout_width="match_parent"
@@ -505,35 +481,14 @@
                         android:text="@string/byte_unit" />
                 </LinearLayout>
 
-                <SeekBar
+                <com.google.android.material.slider.Slider
                     android:id="@+id/seekBarNetUdp"
-                    style="@style/Widget.AppCompat.SeekBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:max="20000"
-                    android:maxHeight="28dp"
-                    android:min="0"
-                    android:minHeight="28dp"
-                    android:paddingBottom="12dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/App.RowCaption"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/net_min_payload_range_min" />
-
-                    <TextView
-                        style="@style/App.RowCaption"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/net_min_payload_range_max" />
-                </LinearLayout>
+                    android:stepSize="1"
+                    android:valueFrom="0"
+                    android:valueTo="20000"
+                    app:labelBehavior="floating" />
 
             </LinearLayout>
         </FrameLayout>
